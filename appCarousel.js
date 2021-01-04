@@ -21,11 +21,12 @@ slide.appendChild(frame);
 let i =0;
 
 setInterval(function (){
-    if (i < picture.length){
+    if (i < picture.length-1){
         frame.src = picture[i];
         i++;
     }
     else {
+        frame.src = picture[picture.length];
         i = 0;
     }
-}, 1000);
+}, 1500);
