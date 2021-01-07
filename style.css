@@ -12,6 +12,12 @@ body {
     width: 100%;
 }
 
+#slide {
+    width: 80%;
+    margin: 2em auto;
+}
+
+
 @keyframes translate {
     0% {
         transform: translateX(-10px);
