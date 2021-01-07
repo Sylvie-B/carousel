@@ -5,28 +5,26 @@ let picture = [
     'bretagne04.png'
 ]
 
-let frame = document.createElement('img');
-frame.style.width = window.innerWidth / 2 + 'px';
-frame.style.border = '1px solid black';
-// frame.src = picture[0];
+let Carousel = function (frameTarget, imgTable, frameWidth){
+    // create image frame
+    let frame = document.createElement('img');
+    frame.style.width = frameWidth;
+    frame.style.border = '1px solid black';
+    frame.src = imgTable[0];
 
-let slide = document.getElementById('slide');
-slide.style.width = window.innerWidth / 2 + 'px';
-slide.style.margin = 'auto';
-slide.style.overflow = 'hidden';
+    document.getElementById(frameTarget).appendChild(frame);
 
+    let i =0;
+    setInterval(function (){
+        if (i < imgTable.length-1){
+            frame.src = imgTable[i];
+            i++;
+        }
+        else {
+            frame.src = imgTable[picture.length-1];
+            i = 0;
+        }
+    }, 1500);
+}
 
-slide.appendChild(frame);
-
-let i =0;
-
-setInterval(function (){
-    if (i < picture.length-1){
-        frame.src = picture[i];
-        i++;
-    }
-    else {
-        frame.src = picture[picture.length];
-        i = 0;
-    }
-}, 1500);
+let newCar = new Carousel('slide', picture, '50em');
