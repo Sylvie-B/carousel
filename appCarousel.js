@@ -8,7 +8,7 @@ let picture = [
 let Carousel = function (frameTarget, imgTable, frameWidth, unit){
     let container = document.getElementById(frameTarget);
 
-    // create slides frame
+    //  create slides frame
     let frame = document.createElement('div');
     frame.style.width = frameWidth + unit;
     frame.style.position = 'relative';
@@ -24,7 +24,7 @@ let Carousel = function (frameTarget, imgTable, frameWidth, unit){
 
     frame.appendChild(slide);
 
-    // controls
+    //  controls
     let controls = document.createElement('div');
     controls.style.width = '100%';
     controls.style.height = '100%';
@@ -50,7 +50,7 @@ let Carousel = function (frameTarget, imgTable, frameWidth, unit){
     goRight.style.fontSize = '5vw';
     controls.appendChild(goRight);
 
-    // create a square div for each slide in idx
+    //  create a square div for each slide in idx
     let square = document.createElement('div');
     square.style.width = '100%';
     square.style.position = 'absolute';
@@ -68,38 +68,21 @@ let Carousel = function (frameTarget, imgTable, frameWidth, unit){
     }
     frame.appendChild(square);
 
-    // todo mouseover and click
-
-    let timer = setInterval(scroll, 2000);
-
-    function scroll (){
-        let ref = 0;
-        let scrollTimer = setInterval(function (){
-            if (ref < frameWidth){
-                slide.style.left = ref + unit;
-                ref++;
-            }
-            else {
-                clearInterval(scrollTimer);
-                slide.style.left = '0';
-                zap();
-            }
-        }, 10)
-    }
+    let timer = setInterval(zap, 2000);
 
     let i =0;
-    function zap (){
 
+    function zap (){
         if (i < imgTable.length-1){
             slide.src = imgTable[i];
             i++;
         }
         else {
-            slide.src = imgTable[picture.length-1];
+            slide.src = imgTable[imgTable.length-1];
             i = 0;
         }
     }
-
 }
 
 let newCar = new Carousel('slide', picture, 80, 'em');
+
